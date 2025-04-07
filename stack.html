@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Memory Timeline with Popouts</title>
+  <style>
+    /* Basic Page Styles */
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #000;
+      font-family: 'Fira Code', monospace;
+      color: #fff;
+    }
+    h1, p {
+      text-align: center;
+      margin: 0;
+      padding: 5px;
+    }
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    p {
+      margin-bottom: 20px;
+      color: #aaa;
+      font-size: 0.95em;
+    }
+    
+    /* Memory Container */
+    .memory-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: stretch;
+      gap: 10px;
+    }
+    
+    /* Base style for each memory segment */
+    .segment {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #111;
+      padding: 10px;
+      overflow: visible;
+    }
+    .segment:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 12px currentColor;
+    }
+    
+    /* Minimal content inside each segment */
+    .minimal {
+      text-align: center;
+      pointer-events: none;
+    }
+    .segment-label {
+      font-size: 0.9em;
+      font-weight: bold;
+      opacity: 0.8;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .segment-title {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+    .segment-address {
+      font-size: 0.85em;
+      opacity: 0.8;
+    }
+    
+    /* Popout styling (hidden by default) */
+    .popout {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: #222;
+      border: 1px solid currentColor;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 0.85em;
+      width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 5;
+      text-align: left;
+    }
+    .segment:hover .popout {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    /* Varying segment sizes & neon borders */
+    .text-seg {
+      flex: 1;
+      color: #ff4444;
+      border: 2px solid #ff4444;
+    }
+    .data-seg {
+      flex: 1;
+      color: #44ff44;
+      border: 2px solid #44ff44;
+    }
+    .bss-seg {
+      flex: 2;
+      color: #4488ff;
+      border: 2px solid #4488ff;
+    }
+    .heap-seg {
+      flex: 3;
+      color: #ffff55;
+      border: 2px solid #ffff55;
+    }
+    .stack-seg {
+      flex: 2;
+      color: #ff55ff;
+      border: 2px solid #ff55ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Virtual Memory Timeline</h1>
+  <p>Hover over each block for more details</p>
+  <div class="memory-container">
+    <!-- Text Segment -->
+    <div class="segment text-seg">
+      <div class="minimal">
+        <span class="segment-label">.text</span>
+        <span class="segment-title">ACM Chair @ UIUC</span>
+        <span class="segment-address">0x2009</span>
+      </div>
+      <div class="popout">
+        Organized 10+ tech talks & hackathons; boosted community engagement by 40%.
+      </div>
+    </div>
+    
+    <!-- Data Segment -->
+    <div class="segment data-seg">
+      <div class="minimal">
+        <span class="segment-label">.data</span>
+        <span class="segment-title">MasterBrand EA Intern</span>
+        <span class="segment-address">0x2011</span>
+      </div>
+      <div class="popout">
+        Mapped IT systems to business processes using EA frameworks to improve visibility.
+      </div>
+    </div>
+    
+    <!-- BSS Segment -->
+    <div class="segment bss-seg">
+      <div class="minimal">
+        <span class="segment-label">.bss</span>
+        <span class="segment-title">Cyber 9/12 Challenge</span>
+        <span class="segment-address">0x2013</span>
+      </div>
+      <div class="popout">
+        Finalist in a national cybersecurity challenge; led threat forensics and policy briefings.
+      </div>
+    </div>
+    
+    <!-- Heap Segment -->
+    <div class="segment heap-seg">
+      <div class="minimal">
+        <span class="segment-label">Heap</span>
+        <span class="segment-title">Cyber R&D @ Sandia</span>
+        <span class="segment-address">0x2015</span>
+      </div>
+      <div class="popout">
+        Developed adversarial ML defenses and built internal tooling for robust analysis.
+      </div>
+    </div>
+    
+    <!-- Stack Segment -->
+    <div class="segment stack-seg">
+      <div class="minimal">
+        <span class="segment-label">Stack</span>
+        <span class="segment-title">Incoming @ Cisco</span>
+        <span class="segment-address">0x2023</span>
+      </div>
+      <div class="popout">
+        Joining Cisco to drive next-gen cybersecurity solutions and network innovation.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
